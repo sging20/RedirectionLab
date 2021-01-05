@@ -1,7 +1,19 @@
 import java.util.Scanner;
 public class PigLatin{
   public static void main(String[] args){
-
+    Scanner n= new Scanner(System.in);
+    while(n.hasNext()){
+      String input= n.nextLine().toLowerCase();
+      Scanner line= new Scanner(input);
+      while(line.hasNext()){
+        System.out.print(pigLatinBest(line.next()));
+        if( line.hasNext() == true){
+          String space= " ";
+          System.out.print(space);
+        }
+      }
+      if(n.hasNextLine()) System.out.println();
+    }
   }
 
   public static String pigLatinSimple(String s){
@@ -33,7 +45,19 @@ public class PigLatin{
     }
 
   public static String pigLatinBest(String s){
-
+  String ret="";
+  Boolean gotcase= false;
+  String input = s;
+if(!Character.isLetter(s.charAt(0))) return s; //if symbol is in front return input;
+if(!Character.isLetter(s.charAt(s.length()-1))){
+  input = s.substring(0, s.length()-1);
+  gotcase= true;
+}
+  ret= pigLatin(input);
+if(gotcase == true){
+  ret = ret+ s.charAt(s.length()-1);
+}
+return ret;
 }
 
 }
